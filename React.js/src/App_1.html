@@ -1,0 +1,49 @@
+<!DOCTYPE html> <!-- Declares the document as HTML -->
+<html lang="en"> <!-- It sets the language to English -->
+<head>
+  <meta charset="UTF-8" /> <!-- charset="UTF-8" means the document is encoded in UTF-8,which can represent almost every character in every language (English, Arabic, Chinese, emojis, etc.).-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" /> <!--Use the device’s actual width (width=device-width)-->
+  <title>Document</title> <!-- Sets the Browsers Tab Title--> <!--“Make this page scale properly on phones and tablets — no weird zooming.”-->
+</head>
+<body>
+  <!--Writing Hello world using plain HTML-->
+  <div>
+    <h1>Hello World</h1>
+  </div>
+
+  <!--JavaScript-->
+  <div id="root"></div>
+  <script>
+    const heading = document.createElement("h1");
+    heading.innerHTML = "Hello from javaScript";
+
+    const root = document.getElementById("root");
+    root.appendChild(heading);
+  </script>
+
+  <!--React-->
+  <!--Our vs code editor doesnot understand react so we neet to put react into vs code by installing it from CDN-->
+
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <!-- The URL above if use see it it is just a plain javaScript code. Its written by facebook developers-->
+   <!--This is the core react thing that we usre to build UI's-->
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script> 
+  <!--This is used to manipulate the DOM. and helps to render the components to DOM-->
+
+  <div id="root">
+    <script>
+      const heading = React.createElement("h1", {id: "heading"}, "Hello world from React");
+
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+      root.render(heading);// Replaces not Appended
+
+      // What will come if we consolelog heading it is a object. so react element is a javaScript object ,root.render takes h1 tag and then render to Browser.
+
+      // React can be added just to the portion of html because it is library.
+    </script> 
+  </div>
+  
+  
+  
+</body>
+</html>
