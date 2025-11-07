@@ -403,6 +403,11 @@ Reconciliation algorithm aka React fibre:
   React is doing efficent DOM manipulation
 
 
-  Episode 6
+Episode 6
 
-  
+Monolith and Micro services
+useEffect(()=>{}, []); this will be called last after the code ends
+the callback inside the function will be called after the components render.
+CORS policy is implemented by the browser to make a request to the other domain. (refer youtube namaste js)
+
+
