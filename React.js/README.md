@@ -232,7 +232,7 @@ Transitive Dependency :=> When one dependency depends on another dependency
 
 Episode 3
 
-use script to run a program
+use scripts to run a program
 
 "scripts": {
   "dev": "parcel index.html",
@@ -303,5 +303,85 @@ Advantages of jsx;
 2. Sanitises the data before rendering
 3. Shows more useful errors 
 
+
+
+Episode 4
+
+props :=> sending a data dynamically to the component. component is a javascript function and props are like arguments so more like passing the arguments to the function. These props are wraped into object and passed as props
+
+config driven ui :=>  uis are built based on the data not hardcoded eg: (we see differentmenucards in differnt cities)
+
+key = To uniquely identityfy each items in the length.
+when the components are at same level and the new component comes in the react re-renders whole components.but if it come with key then it knows where to put it.
+
+import RestaurantCards from "./RestaurantCards"
+
+const Body = () => {
+  return (
+    <div>
+        <div className='flex justify-between m-3 p-2'>
+            <div className='flex'>
+                <input className='border-black bg-gray-100 rounded-lg p-2' type='text' placeholder='Search the Restaurant' />
+                <button className='m-2 p-1 bg-amber-600 cursor-pointer rounded-lg'>Search</button>
+            </div>
+            <div>
+                <button className='m-2 p-1 bg-gray-300 rounded-lg cursor-pointer'>Top Rated Restaurants</button>
+            </div>
+        </div>
+        
+        
+        <div>
+            <RestaurantCards />
+        </div>
+    </div>
+  )
+}
+
+export default Body
+
+
+import React from 'react'
+import { RESTAURANT_LOGO } from '../Constants/Utils'
+
+const Header = () => {
+  return (
+    <div className='flex justify-between m-3 p-2 bg-amber-200 cursor-pointer'>
+        <div>
+            <img  className='h-12' src={RESTAURANT_LOGO} alt='Restauran logo'/>
+        </div>
+        <div>
+            <ul className='flex gap-3 mt-3 cursor-pointer'>
+                <li >Home</li>
+                <li >Contact</li>
+                <li >About</li>
+                <li >Cart🛒</li>
+            </ul>
+        </div>
+    </div>
+  )
+}
+
+export default Header
+
+import React from 'react'
+import { RESTAURANT_LOGO } from '../Constants/Utils'
+
+const RestaurantCards = () => {
+  return (
+    <div>
+      <div className='m-3 p-2 bg-gray-200 w-48 hover:bg-gray-400 cursor-pointer'>
+        <img src={RESTAURANT_LOGO} alt="restaurant cards" />
+        <h1>Meghana Foods</h1>
+        <h2>Banglore</h2>
+        <h3>Cusines</h3>
+      </div>
+    </div>
+  )
+}
+
+export default RestaurantCards
+
+
+Episode 5
 
 

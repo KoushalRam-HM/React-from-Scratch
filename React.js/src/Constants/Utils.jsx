@@ -1,0 +1,1 @@
+export const RESTAURANT_LOGO = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEfKHTR2y0rK-GvknH0t3ZX9DWXKZYXBGOrQ&s";
