@@ -18,8 +18,12 @@ const Body = () => {
         };
 
         const handleTopRatedRestaurants = () => {
-            const filteredList = listOfRestaurants.filter(res => res.info.avgRating > 4);
+            const filteredList = listOfRestaurants.filter(res => res?.info?.avgRating > 4);
             setListOfRestaurants(filteredList);
+        }
+
+        if(listOfRestaurants.length === 0){
+            return <h1>Loading..</h1>                 //Use Shimmer over here. And this is known as conditional rendering
         }
 
   return (
@@ -36,7 +40,7 @@ const Body = () => {
         
         
         <div className="flex flex-wrap">
-            {listOfRestaurants.map((restaurant) => <RestaurantCards key={restaurant.info.id} resData={restaurant} />)}
+            {listOfRestaurants.map((restaurant) => <RestaurantCards key={restaurant?.info?.id} resData={restaurant} />)}
         </div>
     </div>
   )
