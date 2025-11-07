@@ -384,4 +384,25 @@ export default RestaurantCards
 
 Episode 5
 
+Hooks :=> allow us to hook into react features like useState, useEffect eltc
+1. Named export
+2. Default export
 
+why do we need useEffect => when we were building topratedrestaurants feature when we click on that the data changed but not appeared on on the screen then we have to use hooks to make it appear
+
+State variables are different from normal javascript variables
+State variable is a object that stores the data which changes over time.
+hook is a normal javascript function
+names inside the [a,b] = useState(default value) are array destructuring
+whenever the state variable updates react re renders the components
+
+Reconciliation algorithm aka React fibre:
+  react creates a virtual DOM (representation of actual DOM)
+  and it is a object it compares with the actual DOM
+  diff algorithm compares two and find the difference and actually updates the DOM
+  React is doing efficent DOM manipulation
+
+
+  Episode 6
+
+  
