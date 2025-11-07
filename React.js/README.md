@@ -47,7 +47,7 @@
 </body>
 </html>
 
-<!--
+
 React is a javaScript libraray. The name 'React' was choosen because it is designed in such a way that it allows the developer tho react
 to the changes in data, state within in an application, and to update the user interface with in a declarative and efficient manner.
 when something in app changes (input, button click) the react automatically changes that part of ui that needs update. we need not to 
@@ -106,7 +106,7 @@ speed :=> contents loads faster because its delivered from a nearby server
 
 React builds the UI
 ReactDOM helps to render the components into the DOM.
--->
+
 
 
 
@@ -213,7 +213,7 @@ To make our app production ready what we should do ?
 
 5. Need a server to run the things.
 
-Feature of Parce: 
+Feature of Parcel(bundler): 
 
 1. Hot Module Replacement
     it means that parcel keeps a track of all the files which are updating. There is a file watching algorithm that keeps tracks the files
@@ -221,10 +221,87 @@ Feature of Parce:
 2. parcel-cashe
     when we run an application a build is created which takes some time. if we make any changes in the code and save the application , another build will be triggered which might take even less than the previous build. This reduction in time is due to parcel-cashe.
     parcel loads the code from the cashe every time there is a subsequnt build.
-
 3. Treeshaking 
     Removes the unused and unwanted code and optimize the code
 4. It keeps the file minified for us. when the bundler builds the app , the build goes into the dist folder.it contains minified and        optimised code.
 
 Transitive Dependency :=> When one dependency depends on another dependency
+
+
+
+
+Episode 3
+
+use script to run a program
+
+"scripts": {
+  "dev": "parcel index.html",
+  "build": "parcel build index.html"
+}
+
+npm run dev 
+npm run dev
+
+//React Element => are javascript object => render (converts into html) => HTML element(replace root)
+
+const heading = React.createElement("h1", {}, "Hello world");
+
+//JSX it's not a part of react (facebook developers built this)
+//Its ia a html or xml like syntax, synatx extension of javascript
+//It's is converted into React Element
+//Babel converts JSX to the code that JS engine understand (Transpiled) 
+
+const jsxheading = <h1>"Hello World</h1>; // jsx in single line
+
+const jsxheading = (          // Mulitiple line () to jsx to understant where it starrts and where it ends
+<h1>"Hello World   
+</h1>);
+
+React Components: => Is a javascript function that returns a jsx 
+1. class based component
+2. Functional components
+
+Always starts with capital Word
+
+const HeadingComponenet = () => {
+  return <h1>"Hello" </h1>
+};
+
+const HeadingComponenet = () => (
+   <h1>"Hello" </h1>
+);
+
+const HeadingComponenet1 = () => <h1>"Hello" </h1>;
+
+//How to render functional components
+root.render(<HeadingComponent />)
+
+const Title = () => {
+  return (
+    <h1> "hello" </h1>;
+  )
+};
+
+const HeadingComponenet = () => {
+  <Title />; 
+  {Title()} ; //This also works;
+  <Title></Title>;                               // This is component composition
+  return <h1>"Hello" </h1>;
+  { }
+}; 
+
+To use javascript inside the component we can insert into a { } curly braces
+
+const Head = function(){
+  return                                   // can use function declaration
+}
+
+To put React element inside component we use curly braces{}
+
+Advantages of jsx;
+1. Make code readable
+2. Sanitises the data before rendering
+3. Shows more useful errors 
+
+
 
