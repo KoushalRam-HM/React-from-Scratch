@@ -1,7 +1,6 @@
 import { CLOUDINARY_IMG } from "../Constants/Utils";
 
 const RestaurantCards = ({resData}) => {
-  console.log(resData)
   const{name, cuisines, cloudinaryImageId, costForTwo,avgRating} = resData.info;
 
   return (

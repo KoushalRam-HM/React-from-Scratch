@@ -1,5 +1,5 @@
-import React from 'react'
 import { RESTAURANT_LOGO } from '../Constants/Utils'
+import { Link } from 'react-router'
 
 const Header = () => {
   return (
@@ -9,9 +9,9 @@ const Header = () => {
         </div>
         <div>
             <ul className='flex gap-3 mt-3 cursor-pointer'>
-                <li >Home</li>
-                <li >Contact</li>
-                <li >About</li>
+                <li ><Link to={"/"}>Home</Link></li>
+                <li ><Link to={"/contact"}>Contact</Link></li>
+                <li ><Link to={"/about"}>About</Link></li>
                 <li >Cart🛒</li>
             </ul>
         </div>

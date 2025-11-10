@@ -1,25 +1,22 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import RestaurantCards from "./RestaurantCards"
-import { SWIGGY_API } from "../Constants/Utils";
+import { Link } from "react-router";
+import useListOfRestaurants from "../Hooks/useListOfRestaurants";
 
 const Body = () => {
-  const [listOfRestaurants, setListOfRestaurants] = useState([]);
+  const [searchText, setSearchText] = useState("");
 
-        useEffect(()=>{
-            fetchData();
-        },[])
+  const {listOfRestaurants, filteredRestaurants} = useListOfRestaurants();
 
-        const fetchData = async () => {
-            const data = await fetch(SWIGGY_API);
-            const json = await data.json();
-            const res =json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants ;
-
-            setListOfRestaurants(res);
-        };
 
         const handleTopRatedRestaurants = () => {
             const filteredList = listOfRestaurants.filter(res => res?.info?.avgRating > 4);
-            setListOfRestaurants(filteredList);
+            setFilteredRestaurants(filteredList);
+        }
+
+        const handleSearchText = () => {
+            const filteredText = listOfRestaurants.filter((res) => res.info.name.toLowerCase().includes(searchText.toLowerCase()));
+            setFilteredRestaurants(filteredText);
         }
 
         if(listOfRestaurants.length === 0){
@@ -30,8 +27,8 @@ const Body = () => {
     <div>
         <div className='flex justify-between m-3 p-2'>
             <div className='flex'>
-                <input className='border-black bg-gray-100 rounded-lg p-2' type='text' placeholder='Search the Restaurant' />
-                <button className='m-2 p-1 bg-amber-600 cursor-pointer rounded-lg'>Search</button>
+                <input className='border-black bg-gray-100 rounded-lg p-2' type='text' placeholder='Search the Restaurant' value={searchText} onChange={(e)=>{setSearchText(e.target.value)}}/>
+                <button className='m-2 p-1 bg-amber-600 cursor-pointer rounded-lg' onClick={handleSearchText}>Search</button>
             </div>
             <div>
                 <button className='m-2 p-1 bg-gray-300 rounded-lg cursor-pointer' onClick={handleTopRatedRestaurants}>Top Rated Restaurants</button>
@@ -40,7 +37,7 @@ const Body = () => {
         
         
         <div className="flex flex-wrap">
-            {listOfRestaurants.map((restaurant) => <RestaurantCards key={restaurant?.info?.id} resData={restaurant} />)}
+            {filteredRestaurants.map((restaurant) =><Link key={restaurant?.info?.id} to={"/restaurants/"+restaurant?.info?.id}> <RestaurantCards  resData={restaurant} /></Link>)}
         </div>
     </div>
   )

@@ -411,5 +411,98 @@ the callback inside the function will be called after the components render.
 CORS policy is implemented by the browser to make a request to the other domain. (refer youtube namaste js)
  Conditional Rendering
 
+Episode 7
+
+const Header = () => {
+  console.log("header rendered");
+
+  useEffect(()=>{
+    console.log("useEffect rendered");
+  },[])
+}
+
+header rendered will be called first, later at the end useEffect rendered will be called
+every time the component renderes the useEffect is called.when dependency array is not present(every time you type a letter in the search text)
+only called on initial render with dependency and if we put something inside the dependency then it is called when the dependency changes
+used to create local state variables inside a functional component so dont use hooks outside the component
 
 
+React router for path:
+  npm i react-router;
+
+  dont use anchor tag bcz it renders the whole page
+
+
+  Types of routing:
+  1. client side routing : The entire app load once and navigation happens within the browser
+  2. everytime we navigate to new page, the browser sends a request to the server and the server responds with a new page.
+
+
+Optimising our app
+
+  single responsibility princiole :=> more readable, reusable and testable
+
+  Create custom hooks
+  import { useEffect, useState } from "react";
+  import { SWIGGY_API } from "../Constants/Utils";
+
+
+const useListOfRestaurants = () => {
+  const [listOfRestaurants, setListOfRestaurants] = useState([]);
+  const [filteredRestaurants, setFilteredRestaurants] = useState([]);
+  
+          useEffect(()=>{
+            fetchData();
+        },[])
+
+        const fetchData = async () => {
+            const data = await fetch(SWIGGY_API);
+            const json = await data.json();
+            const res =json?.data?.data?.cards?.[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
+
+            setListOfRestaurants(res);
+            setFilteredRestaurants(res);
+        };
+
+    return {
+            listOfRestaurants,
+            filteredRestaurants
+    }
+}
+
+export default useListOfRestaurants;
+
+
+ const useOnlineStatus = () => {
+  const [onlineStatus, setOnlineStatus] = useState(true)
+
+  useEffect(()=>{
+    window.addEventListner("offline", ()=>{
+      setOnlineStatus(false)
+    })
+
+  window.addEventListner("online", ()=>{
+      setOnlineStatus(true)
+    })  
+
+  },[])
+
+
+  return onlineStatus
+ }
+
+export default useOnlineStatus;
+
+
+Optimisation===========================================> 
+  Chunking
+  Code splitting
+  Dynamic bundeling
+  Lazy Loading
+  On demand Loading
+
+  const About = lazy(()=> import('Path'))
+
+  import {lazy, Suspence} from 'react'
+
+  <Suspence fallback={}>Wrap the element </Suspence>
