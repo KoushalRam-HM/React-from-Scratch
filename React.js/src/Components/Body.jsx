@@ -1,16 +1,18 @@
 import { useState } from "react";
-import RestaurantCards from "./RestaurantCards"
+import RestaurantCards, {withPromotedLabel} from "./RestaurantCards"
 import { Link } from "react-router";
 import useListOfRestaurants from "../Hooks/useListOfRestaurants";
 
 const Body = () => {
   const [searchText, setSearchText] = useState("");
 
-  const {listOfRestaurants, filteredRestaurants} = useListOfRestaurants();
+  const {listOfRestaurants, filteredRestaurants, setFilteredRestaurants} = useListOfRestaurants();
+
+  const RestaurantCardPromoted = withPromotedLabel(RestaurantCards);
 
 
         const handleTopRatedRestaurants = () => {
-            const filteredList = listOfRestaurants.filter(res => res?.info?.avgRating > 4);
+            const filteredList = listOfRestaurants.filter(res => res?.info?.avgRating > 4.3);
             setFilteredRestaurants(filteredList);
         }
 
@@ -37,7 +39,7 @@ const Body = () => {
         
         
         <div className="flex flex-wrap">
-            {filteredRestaurants.map((restaurant) =><Link key={restaurant?.info?.id} to={"/restaurants/"+restaurant?.info?.id}> <RestaurantCards  resData={restaurant} /></Link>)}
+            {filteredRestaurants.map((restaurant) =><Link key={restaurant?.info?.id} to={"/restaurants/"+restaurant?.info?.id}> {restaurant?.info?.avgRating > 4.3 ?<RestaurantCardPromoted resData={restaurant}/> : <RestaurantCards  resData={restaurant} />} </Link>)}
         </div>
     </div>
   )

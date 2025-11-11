@@ -501,8 +501,60 @@ Optimisation===========================================>
   Lazy Loading
   On demand Loading
 
-  const About = lazy(()=> import('Path'))
 
   import {lazy, Suspence} from 'react'
-
+ const About = lazy(()=> import('Path'))
   <Suspence fallback={}>Wrap the element </Suspence>
+
+
+  -------------------------------------------------------------
+
+  HigherOrdercomponent takes the component and return the component
+
+
+  import RestaurantCards, {withPromotedLabel} from "./RestaurantCards"
+  const RestaurantCardPromoted = withPromotedLabel(RestaurantCards);
+
+  <div className="flex flex-wrap">
+            {filteredRestaurants.map((restaurant) =><Link key={restaurant?.info?.id} to={"/restaurants/"+restaurant?.info?.id}> {restaurant?.info?.avgRating > 4.3 ?<RestaurantCardPromoted resData={restaurant}/> : <RestaurantCards  resData={restaurant} />} </Link>)}
+    </div>
+
+  
+export const withPromotedLabel = (RestaurantCards) => {
+  return (props) =>{
+    return (
+      <div>
+        <label className="absolute bg-black text-white m-2 p-1"><p>BEST</p></label>
+        <RestaurantCards {...props}/>
+      </div>
+    )
+  }
+}
+
+=---------------------------------------------------------------------------------
+
+Build Accordions
+  border-black border-b-2
+
+
+-----------------------------------------------------------------------------------
+
+Lifting the state up
+props drilling
+-----------------------------------------------------------------------------------
+React context
+  import {createContext} from 'react;
+
+  const userContext = createContext({
+    loggedInUser: "Ram"
+  })
+
+  export default userContext;
+
+  import{useContext} from 'react'
+  import userContext from '.utils/co....
+
+  const data = useContext(userContext);
+      {loggedinuser}
+======================================================================================
+        

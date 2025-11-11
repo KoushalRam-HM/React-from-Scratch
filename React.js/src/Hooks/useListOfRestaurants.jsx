@@ -21,7 +21,8 @@ const useListOfRestaurants = () => {
 
     return {
             listOfRestaurants,
-            filteredRestaurants
+            filteredRestaurants,
+            setFilteredRestaurants
     }
 }
 
